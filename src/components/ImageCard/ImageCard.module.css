@@ -1,0 +1,7 @@
+.image {
+  cursor: pointer;
+}
+
+.image:hover {
+  outline: 1px solid blue;
+}
