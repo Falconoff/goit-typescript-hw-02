@@ -1,13 +1,23 @@
 // import css from './SearchBar.module.css'
+import { FormEvent } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
 const notify = () => toast.error('Text must be entered to search for images');
 
-const SearchBar = ({ onSearch }) => {
-  const handleSubmit = evt => {
-    evt.preventDefault();
+type Props = { onSearch: (searchText: string) => void };
 
-    const inputValue = evt.currentTarget.elements.search.value.trim();
+const SearchBar = ({ onSearch }: Props) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+
+    const inputValue: string = (
+      event.currentTarget.elements.namedItem('search') as HTMLInputElement
+    ).value.trim();
+
+    // before TypeScript it was:
+    // const inputValue =
+    //   event.currentTarget.elements.search.value.trim();
+    console.log('inputValue: ', inputValue);
 
     if (inputValue === '') {
       notify();
@@ -15,7 +25,7 @@ const SearchBar = ({ onSearch }) => {
     }
 
     onSearch(inputValue);
-    evt.currentTarget.reset();
+    event.currentTarget.reset();
   };
 
   return (

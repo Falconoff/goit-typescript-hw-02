@@ -10,36 +10,36 @@ import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn';
 import ImageModal from './components/ImageModal/ImageModal';
 
 function App() {
-  const [images, setImages] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [searchValue, setSearchValue] = useState(null);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [bigImg, setBigImg] = useState(null);
+  const [images, setImages] = useState<[] | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<object | null>(null);
+  const [searchValue, setSearchValue] = useState<string | null>(null);
+  const [page, setPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(0);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [bigImg, setBigImg] = useState<object | null>(null);
 
-  const onSearch = inputValue => {
+  const onSearch = (inputValue: string): void => {
     setSearchValue(inputValue);
     setImages(null);
     setPage(1);
-    setTotalPages(null);
+    setTotalPages(0);
   };
 
-  const onLoadMore = () => {
+  const onLoadMore = (): void => {
     setPage(page + 1);
   };
 
-  const onCloseModal = () => {
+  const onCloseModal = (): void => {
     setIsModalOpen(false);
   };
 
-  const showBigImg = imgData => {
+  const showBigImg = (imgData: object): void => {
     setBigImg(imgData);
     setIsModalOpen(true);
   };
 
-  useEffect(() => {
+  useEffect((): void => {
     if (searchValue === null) return;
 
     async function fetchImages() {
@@ -49,12 +49,12 @@ function App() {
         const data = await getImages(searchValue, page);
 
         if (page !== 1) {
-          setImages(prevImages => [...prevImages, ...data.results]);
+          setImages((prevImages): [] => [...prevImages, ...data.results]);
         } else {
           setImages(data.results);
         }
         setTotalPages(data.total_pages);
-      } catch (error) {
+      } catch (error: object) {
         setError(error.message);
       } finally {
         setIsLoading(false);
