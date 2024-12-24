@@ -14,10 +14,10 @@ const SearchBar = ({ onSearch }: Props) => {
       event.currentTarget.elements.namedItem('search') as HTMLInputElement
     ).value.trim();
 
-    // before TypeScript it was:
+    // --- before TypeScript it was: ---
     // const inputValue =
     //   event.currentTarget.elements.search.value.trim();
-    console.log('inputValue: ', inputValue);
+    // console.log('inputValue: ', inputValue);
 
     if (inputValue === '') {
       notify();

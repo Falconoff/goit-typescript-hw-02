@@ -1,7 +1,15 @@
 import ImageCard from '../ImageCard/ImageCard';
+
+import { Image } from '../../types';
+
 import css from './ImageGallery.module.css';
 
-const ImageGallery = ({ images, showBigImg }) => {
+interface ImageGalleryProps {
+  images: Image[];
+  showBigImg: (image: Image) => void;
+}
+
+const ImageGallery = ({ images, showBigImg }: ImageGalleryProps) => {
   return (
     <>
       <h3>ImageGallery</h3>

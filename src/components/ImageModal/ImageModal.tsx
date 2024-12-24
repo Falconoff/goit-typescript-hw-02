@@ -1,9 +1,17 @@
 import Modal from 'react-modal';
 Modal.setAppElement('#root');
 
+import { Image } from '../../types';
+
 import css from './ImageModal.module.css';
 
-const ImageModal = ({ onCloseModal, isModalOpen, bigImg }) => {
+interface ImageModalProps {
+  onCloseModal: () => void;
+  isModalOpen: boolean;
+  bigImg: Image;
+}
+
+const ImageModal = ({ onCloseModal, isModalOpen, bigImg }: ImageModalProps) => {
   return (
     <Modal
       isOpen={isModalOpen}

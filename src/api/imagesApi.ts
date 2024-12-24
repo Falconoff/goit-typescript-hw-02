@@ -9,7 +9,7 @@ axios.defaults.params = {
   per_page: 4,
 };
 
-export const getImages = async (searchValue, page) => {
+export const getImages = async (searchValue: string, page: number) => {
   const { data } = await axios.get(
     `?client_id=${ACCESS_KEY}&query=${searchValue}&page=${page}`
   );

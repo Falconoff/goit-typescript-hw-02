@@ -1,6 +1,13 @@
+import { Image } from '../../types';
+
 import css from './ImageCard.module.css';
 
-const ImageCard = ({ image, showBigImg }) => {
+interface ImageCardProps {
+  image: Image;
+  showBigImg: (image: Image) => void;
+}
+
+const ImageCard = ({ image, showBigImg }: ImageCardProps) => {
   const handleClk = () => {
     showBigImg(image);
   };
