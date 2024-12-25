@@ -12,7 +12,7 @@ interface ImageGalleryProps {
 const ImageGallery = ({ images, showBigImg }: ImageGalleryProps) => {
   return (
     <>
-      <h3>ImageGallery</h3>
+      <h2>ImageGallery</h2>
       <ul>
         {images !== null &&
           images.map(image => {
