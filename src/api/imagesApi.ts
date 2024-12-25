@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Image } from '../types';
 
 const ACCESS_KEY = 'yrvwBCUKI7qmqnJcluc-l1RFruvgFppZ_BRTgitL-sY';
 
@@ -9,8 +10,16 @@ axios.defaults.params = {
   per_page: 4,
 };
 
-export const getImages = async (searchValue: string, page: number) => {
-  const { data } = await axios.get(
+interface imagesResponse {
+  results: Image[];
+  total_pages: number;
+}
+
+export const getImages = async (
+  searchValue: string,
+  page: number
+): Promise<imagesResponse> => {
+  const { data } = await axios.get<imagesResponse>(
     `?client_id=${ACCESS_KEY}&query=${searchValue}&page=${page}`
   );
 

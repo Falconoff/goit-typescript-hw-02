@@ -8,9 +8,10 @@ interface ImageCardProps {
 }
 
 const ImageCard = ({ image, showBigImg }: ImageCardProps) => {
-  const handleClk = () => {
+  const handleClk = (): void => {
     showBigImg(image);
   };
+
   return (
     <div>
       <img
